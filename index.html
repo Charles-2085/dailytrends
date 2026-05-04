@@ -1,85 +1,188 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Loading Offers...</title>
-  <!-- Redirect after 1 second -->
-  <meta http-equiv="refresh" content="1; url=https://ln.run/IkQ4X">
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f8fafc;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-    }
-    .card {
-      background: #ffffff;
-      padding: 28px;
-      border-radius: 12px;
-      max-width: 400px;
-      width: 90%;
-      text-align: center;
-      box-shadow: 0 8px 25px rgba(0,0,0,0.06);
-    }
-    .title {
-      font-size: 18px;
-      font-weight: 600;
-      margin-bottom: 10px;
-    }
-    .text {
-      font-size: 14px;
-      color: #555;
-      margin-bottom: 15px;
-    }
-    .progress {
-      width: 100%;
-      height: 6px;
-      background: #e5e7eb;
-      border-radius: 5px;
-      overflow: hidden;
-      margin-top: 15px;
-    }
-    .bar {
-      width: 0%;
-      height: 100%;
-      background: #22c55e;
-      animation: load 1s linear forwards;
-    }
-    @keyframes load {
-      from { width: 0%; }
-      to { width: 100%; }
-    }
-    .small {
-      font-size: 12px;
-      color: #888;
-      margin-top: 10px;
-    }
-    a {
-      display: inline-block;
-      margin-top: 12px;
-      font-size: 13px;
-      color: #2563eb;
-      text-decoration: none;
-    }
-  </style>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mobile Network Offer</title>
+<style>
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial;
+  background: linear-gradient(180deg, #000000 0%, #f4c542 35%, #2f49ff 100%);
+}
+/* HEADER */
+.header {
+  text-align: center;
+  color: #ffd700;
+  font-weight: 700;
+  font-size: 22px;
+  padding: 20px 10px;
+}
+/* PAGE SYSTEM */
+.page {
+  display: none;
+  opacity: 0;
+  transform: translateY(25px);
+  transition: all 0.5s ease;
+}
+.active {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+}
+/* CARD */
+.card {
+  background: #fff;
+  border-radius: 16px;
+  max-width: 420px;
+  margin: 20px auto;
+  padding: 22px;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.2);
+  text-align: center;
+  animation: fadeIn 0.6s ease;
+}
+/* TEXT */
+.status {
+  font-size: 14px;
+  color: #2f49ff;
+  margin-bottom: 6px;
+}
+.notice {
+  color: #e74c3c;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+h2 {
+  margin: 10px 0;
+  font-size: 21px;
+  font-weight: 700;
+}
+p {
+  color: #444;
+  font-size: 14px;
+}
+/* BUTTONS */
+.btn {
+  width: 100%;
+  padding: 15px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 10px;
+  font-size: 17px;
+  font-weight: 600;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+/* Tap animation */
+.btn:active {
+  transform: scale(0.96);
+}
+/* COLORS */
+.green { background: #1db954; }
+.red { background: #ff3b30; }
+.blue { background: #2f49ff; }
+.yellow {
+  background: #ffc107;
+  color: #000;
+}
+/* PULSE CTA */
+.pulse {
+  animation: pulse 1.5s infinite;
+}
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(255,193,7,0.7); }
+  70% { box-shadow: 0 0 0 14px rgba(255,193,7,0); }
+  100% { box-shadow: 0 0 0 0 rgba(255,193,7,0); }
+}
+/* PROGRESS */
+.progress {
+  height: 6px;
+  background: #ddd;
+  border-radius: 5px;
+  overflow: hidden;
+  margin-top: 20px;
+  position: relative;
+}
+.bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(to right, #2f49ff, #ffc107);
+  animation: load 3s forwards;
+}
+/* shimmer */
+.bar::after {
+  content: "";
+  position: absolute;
+  width: 40%;
+  height: 100%;
+  background: rgba(255,255,255,0.4);
+  animation: shimmer 1.2s infinite;
+}
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(250%); }
+}
+@keyframes load {
+  to { width: 100%; }
+}
+/* FADE */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.small {
+  font-size: 12px;
+  color: #777;
+  margin-top: 10px;
+}
+</style>
 </head>
 <body>
+<div class="header">Mobile Network Verification Promo</div>
+<!-- PAGE 1 -->
+<div id="page1" class="page active">
   <div class="card">
-    <div class="title">Checking Available Airtime & Data Offers</div>
-    <div class="text">
-      Please wait while we connect you to available network services.
-    </div>
+    <div class="status">⏳ limited offers available</div>
+    <div class="notice">Only 21reward slots left today</div>
+    <h2>Select the network you use</h2>
+    <p>Verify your number to unlock exclusive rewards instantly.</p>
+    <button class="btn green" onclick="nextPage()">Econet</button>
+    <button class="btn red" onclick="nextPage()">Telecel</button>
+    <button class="btn blue" onclick="nextPage()">NetOne</button>
+    <div class="small">Verification system scans network eligibility  before showing rewards</div>
+  </div>
+</div>
+<!-- PAGE 2 -->
+<div id="page2" class="page">
+  <div class="card">
+    <h2>Congratulations!</h2>
+    <p>You've been invited to try this free quiz and discover how you could earn money online!</p>
+    <button class="btn yellow pulse" onclick="nextPage()">START</button>
+  </div>
+</div>
+<!-- PAGE 3 -->
+<div id="page3" class="page">
+  <div class="card">
+    <h2>Verifying Network</h2>
+    <p>Redirecting...</p>
     <div class="progress">
       <div class="bar"></div>
     </div>
-    <div class="small">
-      Secure connection in progress...
-    </div>
-    <a href="https://ln.run/IkQ4X">Continue manually</a>
   </div>
+</div>
+<script>
+let current = 1;
+function nextPage() {
+  document.getElementById("page" + current).classList.remove("active");
+  current++;
+  document.getElementById("page" + current).classList.add("active");
+  if (current === 3) {
+    setTimeout(() => {
+      window.location.href = "https://ln.run/IkQ4X";
+    }, 2800);
+  }
+}
+</script>
 </body>
 </html>
